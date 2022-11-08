@@ -1,11 +1,18 @@
-import { Bot } from 'grammy';
-import { BOT_TOKEN } from './config';
+import { Bot, Keyboard } from 'grammy';
+import { BOT_TOKEN, WEB_APP_HOST } from './config';
 
-// Create a bot object
-const bot = new Bot(BOT_TOKEN as string); // <-- place your bot token in this string
+const bot = new Bot(BOT_TOKEN as string);
 
-// Register listeners to handle messages
-bot.on('message:text', (ctx) => ctx.reply('Echo: ' + ctx.message.text));
+bot.command('start', async (ctx) => {
+  const keyboard = new Keyboard();
+  keyboard.webApp('Сделать заказ', WEB_APP_HOST as string);
 
-// Start the bot (using long polling)
+  await ctx.reply('', {
+    reply_markup: {
+      keyboard: keyboard.build(),
+      resize_keyboard: true,
+    },
+  });
+});
+
 bot.start();
