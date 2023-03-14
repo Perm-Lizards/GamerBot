@@ -71,3 +71,11 @@
 2. Захостить проект
 3. Настроить CI/CD
 4. Улучшения, фиксы, расширения
+
+# Настройка рабочего окружения
+
+- Создать бд в PostgreSQL
+- Указать token и данные для подключения к PostgreSQL
+- npm i
+- npx prisma generate
+- npx prisma migrate dev --name init
